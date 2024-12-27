@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceita sair comigo?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Impede a rolagem */
+        }
+        .black-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: -2;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1473134031479-7cb2efee6451?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Substitua pela URL da sua imagem */
+            background-size: cover; /* Cobre toda a área */
+            filter: blur(8px); /* Efeito de desfoque */
+            z-index: -1; /* Coloca o fundo atrás do conteúdo */
+        }
+        h1 {
+            color: #fff; /* Cor do texto */
+            margin-bottom: 20px; /* Espaçamento abaixo do título */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para melhor legibilidade */
+        }
+        .button-container {
+            display: flex; /* Usar flexbox para alinhar os botões lado a lado */
+            gap: 10px; /* Espaçamento entre os botões */
+        }
+        button {
+            padding: 15px 30px; /* Aumenta o tamanho do botão */
+            font-size: 18px; /* Aumenta o tamanho da fonte */
+            border: none; /* Remove a borda padrão */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            transition: background-color 0.3s, transform 0.2s; /* Transições suaves */
+            background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo semi-transparente */
+        }
+        button:hover {
+            background-color: #5e6843; /* Cor de fundo ao passar o mouse */
+            color: white; /* Cor do texto ao passar o mouse */
+            transform: scale(1.05); /* Aumenta o tamanho do botão ao passar o mouse */
+        }
+        button:disabled {
+            background-color: #ccc; /* Cor do botão desabilitado */
+            cursor: not-allowed; /* Cursor de não permitido */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="black-background"></div>
+    <div class="background"></div> <!-- Div para o fundo com blur -->
+    <h1>Gigi, você aceita sair comigo de novo?</h1>
+    <div class="button-container">
+        <button id="yesButton">Sim</button>
+        <button id="noButton">Não</button>
+    </div>
+
+    <script>
+        // Função para redirecionar ao clicar em "Sim"
+        document.getElementById('yesButton').onclick = function() {
+            window.location.href = 'sim.html'; // Substitua pelo link desejado
+        };
+
+        // Função para mudar a posição do botão "Não"
+        function moveNoButton() {
+            const noButton = document.getElementById('noButton');
+            noButton.style.position = 'absolute';
+            noButton.style.top = Math.random() * 80 + 'vh'; // Posição aleatória vertical
+            noButton.style.left = Math.random() * 80 + 'vw'; // Posição aleatória horizontal
+        }
+
+        // Evento de mouse sobre o botão "Não"
+        document.getElementById('noButton').onmouseover = function() {
+            moveNoButton(); // Muda a posição ao passar o mouse
+        };
+
+        // Função para desabilitar o botão "Não" após o primeiro clique
+        document.getElementById('noButton').onclick = function() {
+            const noButton = document.getElementById('noButton');
+            noButton.disabled = true; // Desabilita o botão
+            noButton.innerText = 'Você não pode clicar mais!'; // Muda o texto do botão
+        };
+    </script>
+
+</body>
+</html>
